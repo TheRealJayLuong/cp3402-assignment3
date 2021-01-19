@@ -92,3 +92,28 @@ function create_year_movie_taxonomies() {
 	register_taxonomy( 'movie-years', 'movie', $movie_args );
 
 }
+
+//Display the content at the bottom of the post
+add_filter( 'the_content', 'prepend_movie_data' );
+function prepend_movie_data ( $content ) {
+	
+	if ( is_singular ('movie') ) {
+
+		$director = get_post_meta( get_the_ID(), 'director', true);
+		$score = get_post_meta( get_the_ID(), 'score', true);
+		$publish_date = get_post_meta( get_the_ID(), 'publish date', true);
+
+		$html = '
+			<div class="book-meta">
+				<strong>Director: </strong> '.$director.'<br>
+				<strong>Score: </strong> '.$score.'<br>
+				<strong>Publish Date: </strong> '.$publish_date.'<br>
+			</div>	 
+
+		';
+			
+		return $content . $html;
+	}
+		
+	return $content;
+}
