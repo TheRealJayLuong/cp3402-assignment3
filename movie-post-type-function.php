@@ -10,25 +10,24 @@ add_action( 'init', 'Movie_review_post_type' );
 function Movie_review_post_type() {
 
 	$labels = array(
-		'name'               => _x( 'Movie', 'post type general name', 'engwp' ),
-		'singular_name'      => _x( 'Movie', 'post type singular name', 'engwp' ),
-		'menu_name'          => _x( 'Movie Review', 'admin menu', 'engwp' ),
-		'name_admin_bar'     => _x( 'Movie', 'add new on admin bar', 'engwp' ),
-		'add_new'            => _x( 'Add New', 'Movie', 'engwp' ),
-		'add_new_item'       => __( 'Add New Movie', 'engwp' ),
-		'new_item'           => __( 'New Movie', 'engwp' ),
-		'edit_item'          => __( 'Edit Movie', 'engwp' ),
-		'view_item'          => __( 'View Movie', 'engwp' ),
-		'all_items'          => __( 'All Movies', 'engwp' ),
-		'search_items'       => __( 'Search Movies', 'engwp' ),
-		'parent_item_colon'  => __( 'Parent Movie:', 'engwp' ),
-		'not_found'          => __( 'No Movies found.', 'engwp' ),
-		'not_found_in_trash' => __( 'No Movies found in Trash.', 'engwp' )
+		'name'               => _x( 'Movie', 'post type general name', 'Movie REview Plugin J@' ),
+		'singular_name'      => _x( 'Movie', 'post type singular name', 'Movie REview Plugin J@' ),
+		'menu_name'          => _x( 'Movie Review', 'admin menu', 'Movie REview Plugin J@' ),
+		'name_admin_bar'     => _x( 'Movie', 'add new on admin bar', 'Movie REview Plugin J@' ),
+		'add_new'            => _x( 'Add New', 'Movie', 'Movie REview Plugin J@' ),
+		'add_new_item'       => __( 'Add New Movie', 'Movie REview Plugin J@' ),
+		'new_item'           => __( 'New Movie', 'Movie REview Plugin J@' ),
+		'edit_item'          => __( 'Edit Movie', 'Movie REview Plugin J@' ),
+		'view_item'          => __( 'View Movie', 'Movie REview Plugin J@' ),
+		'all_items'          => __( 'All Movies', 'Movie REview Plugin J@' ),
+		'search_items'       => __( 'Search Movies', 'Movie REview Plugin J@' ),
+		'parent_item_colon'  => __( 'Parent Movie:', 'Movie REview Plugin J@' ),
+		'not_found'          => __( 'No Movies found.', 'Movie REview Plugin J@' ),
+		'not_found_in_trash' => __( 'No Movies found in Trash.', 'Movie REview Plugin J@' )
 	);
-
 //Set other options for movie review post type
 	$args = array(
-		'description'	     		=> __( 'Movie', 'engwp' ),
+		'description'	     		=> __( 'Movie', 'Movie REview Plugin J@' ),
 		'labels'	      		 	=> $labels,
 //Features this movie review post type support in Post editor		
 		'supports'	     	 		=> array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'revisions' ),
@@ -38,7 +37,7 @@ function Movie_review_post_type() {
 		'query_var'	      			=> true,
 		'rewrite'	      			=> array( 'slug' => 'block-buster' ), /* changed from movies to block-buster */
 		'show_ui'	      			=> true,
-		'menu_icon'	      			=> 'dashicons-format-video',
+		'menu_icon'	      			=> 'dashicons-video-alt2',
 		'show_in_menu'	     		=> true,
 		'show_in_nav_menus'			=> true,
 		'show_in_admin_bar'			=> true,
@@ -73,7 +72,7 @@ function create_year_movie_taxonomies() {
 		'add_or_remove_items'        => __( 'Add or remove Years' ),
 		'choose_from_most_used'      => __( 'Choose from the most used Years' ),
 		'not_found'                  => __( 'No Years found.' ),
-		'menu_name'                  => __( 'Year Screened' ),
+		'menu_name'                  => __( 'Year Released' ),
 	);
 
 	$args = array(
