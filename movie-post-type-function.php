@@ -117,3 +117,43 @@ function prepend_movie_data ( $content ) {
 		
 	return $content;
 }
+
+//setting up movie category taxonomy
+add_action( 'init', 'create_type_movie_taxonomies' );
+function create_type_movie_taxonomies() {
+
+	// Add new taxonomy, make it hierarchical (like categories)
+	$labels = array(
+		'name'                       => _x( 'Movie Category', 'taxonomy general name' ),
+		'singular_name'              => _x( 'Movie Category', 'taxonomy singular name' ),
+		'search_items'               => __( 'Search Movie Category' ),
+		'all_items'                  => __( 'All Movie Categories' ),
+		'parent_item'                => __( 'Parent Category' ),
+		'parent_item_colon'          => __( 'Parent Category:' ),
+		'edit_item'                  => __( 'Edit Movie Category' ),
+		'update_item'                => __( 'Update Movie Category' ),
+		'add_new_item'               => __( 'Add Movie Category' ),
+		'new_item_name'              => __( 'New Movie Category' ),
+		'separate_items_with_commas' => __( 'Separate Movie Categories with commas' ),
+		'add_or_remove_items'        => __( 'Add or remove Movie Categories' ),
+		'choose_from_most_used'      => __( 'Choose from the most used Movie Categories' ),
+		'not_found'                  => __( 'No Movie Categories found.' ),
+		'menu_name'                  => __( 'Movie Category' ),
+	);
+
+	$args = array(
+		'hierarchical'          => true, // true = cateogry - false = tags
+		'labels'                => $labels,
+		'show_ui'               => true,
+		'show_admin_column'     => true,
+		'update_count_callback' => '_update_post_term_count',
+		'public'				=> true,
+		'publicly_queryable'	=> true,
+		'has_archive'			=> true,
+	);
+
+	$moviecategory = array( 'rewrite' => array( 'slug' => 'movie-type' ) );
+	$moviecategory_args = array_merge( $args, $moviecategory );
+	register_taxonomy( 'movie-type', 'movie', $moviecategory_args );
+
+}
