@@ -54,3 +54,27 @@ function setting_up_thumbnail_columns($column,$post_id){
 add_action('add_post_posts_custom_column','setting_up_thumbnail_columns',10,2);
 
 
+// manage the columns of the movie custom post type
+function adding_columns_movie_post_type($columns){
+    //remove columns
+    //unset($columns['title']);
+      unset($columns['taxonomy-movie-years']);
+	  unset($columns['gadwp_stats']);
+      unset($columns['tags']);
+      unset($columns['taxonomy-movie-type']);
+      unset($columns['date']);
+      unset($columns['comments']);
+      unset($columns['author']);
+
+    //add new columns
+      $columns['page_featured_image'] 	= 'Featured Image';
+      $columns['title'] 				= 'Movie Title';	
+      $columns['page_content']    		= 'Movie Content';
+      $columns['taxonomy-movie-years'] 	= 'Year Screened';			
+      $columns['taxonomy-movie-type'] 	= 'Movie Category';
+      $columns['date']    				= 'Date';
+   // $columns['Author']    = 'Author';
+ 
+    return $columns;
+}
+add_action('manage_movie_posts_columns','adding_columns_movie_post_type'); 
