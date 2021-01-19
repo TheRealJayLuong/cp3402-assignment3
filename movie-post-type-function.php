@@ -25,3 +25,30 @@ function Movie_review_post_type() {
 		'not_found'          => __( 'No Movies found.', 'engwp' ),
 		'not_found_in_trash' => __( 'No Movies found in Trash.', 'engwp' )
 	);
+
+//Set other options for movie review post type
+	$args = array(
+		'description'	     		=> __( 'Movie', 'engwp' ),
+		'labels'	      		 	=> $labels,
+//Features this movie review post type support in Post editor		
+		'supports'	     	 		=> array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'revisions' ),
+		'hierarchical'	    		=> false,
+		'public'	      			=> true,
+		'publicly_queryable'		=> true,
+		'query_var'	      			=> true,
+		'rewrite'	      			=> array( 'slug' => 'block-buster' ), /* changed from movies to block-buster */
+		'show_ui'	      			=> true,
+		'menu_icon'	      			=> 'dashicons-format-video',
+		'show_in_menu'	     		=> true,
+		'show_in_nav_menus'			=> true,
+		'show_in_admin_bar'			=> true,
+		// 'menu_position'	=> 5,
+		'can_export'				=> true,
+		'has_archive'				=> true,
+		'exclude_from_search'		=> false,
+		'capability_type'			=> 'post',
+	);
+
+	register_post_type( 'movie', $args );
+
+}
