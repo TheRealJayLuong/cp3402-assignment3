@@ -52,3 +52,43 @@ function Movie_review_post_type() {
 	register_post_type( 'movie', $args );
 
 }
+
+//setting up taxomonies releasing year
+add_action( 'init', 'create_year_movie_taxonomies' );
+function create_year_movie_taxonomies() {
+
+	// Add new taxonomy, make it hierarchical (like categories)
+	$labels = array(
+		'name'                       => _x( 'Year Screened', 'taxonomy general name' ),
+		'singular_name'              => _x( 'Year', 'taxonomy singular name' ),
+		'search_items'               => __( 'Search Years' ),
+		'all_items'                  => __( 'All Years' ),
+		'parent_item'                => __( 'Parent Year' ),
+		'parent_item_colon'          => __( 'Parent Year:' ),
+		'edit_item'                  => __( 'Edit Year' ),
+		'update_item'                => __( 'Update Year' ),
+		'add_new_item'               => __( 'Add New Year' ),
+		'new_item_name'              => __( 'New Year Name' ),
+		'separate_items_with_commas' => __( 'Separate Years with commas' ),
+		'add_or_remove_items'        => __( 'Add or remove Years' ),
+		'choose_from_most_used'      => __( 'Choose from the most used Years' ),
+		'not_found'                  => __( 'No Years found.' ),
+		'menu_name'                  => __( 'Year Screened' ),
+	);
+
+	$args = array(
+		'hierarchical'          => true,
+		'labels'                => $labels,
+		'show_ui'               => true,
+		'show_admin_column'     => true,
+		'update_count_callback' => '_update_post_term_count',
+		'public'				=> true,
+		'publicly_queryable'	=> true,
+		'has_archive'			=> true,
+	);
+
+	$years = array( 'rewrite' => array( 'slug' => 'movie-year' ) );
+	$movie_args = array_merge( $args, $years );
+	register_taxonomy( 'movie-years', 'movie', $movie_args );
+
+}
