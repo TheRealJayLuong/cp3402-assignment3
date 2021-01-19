@@ -78,3 +78,32 @@ function adding_columns_movie_post_type($columns){
     return $columns;
 }
 add_action('manage_movie_posts_columns','adding_columns_movie_post_type'); 
+
+//Populate custom columns for the movie custom post type
+function customing_movie_columns($column,$post_id){
+
+    //featured image column
+    if($column == 'page_featured_image'){
+        //if this page has a featured image
+        if(has_post_thumbnail($post_id)){
+            $post_featured_image = get_the_post_thumbnail($post_id,'thumbnail');
+            // echo $post_featured_image;
+             echo the_post_thumbnail( array(140,100) );
+        }else{
+            echo 'This custom post has no featured image'; 
+        }
+    }
+
+    //page content column
+    if($column == 'page_content'){
+        //get the page based on its post_id
+        $page = get_post($post_id);
+        if($page){
+            //get the main content area
+            $page_content = apply_filters('the_content', $page->post_content); 
+            echo wp_trim_words( get_the_content(), 10);
+        }
+    }
+}
+
+add_action('manage_movie_posts_custom_column','customing_movie_columns',10,2); 
